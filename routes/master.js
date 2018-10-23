@@ -33,7 +33,7 @@ router.post ('/Master',async(req,res)=> {
 
 router.post ('/mongomodel',async(req,res)=> {
   
- var result = await MasterVehicle.find( {MANUFACTURE:req.body.MANUFACTURE},{ _id:0, _v:0, ROYAL_SUNDARAM_CODE:0, ROYAL_SUNDARAM_MODEL:0,ROYAL_MANU:0,BHARATHI_MANU:0,BARATHI_AXA_MODEL:0,CODE:0,BARATHI_AXA_VARIENT:0,BARATHI_EXSHOWROOMPRICE:0,MANUFACTURE:0})
+ var result = await MasterVehicle.find( {MANUFACTURE:req.body.MANUFACTURE},{ _id:false, MODEL:true})
         
 
 var obj = {};
@@ -53,7 +53,7 @@ for ( var key in obj )
 
 router.post ('/mongovariant',async(req,res)=> {
   
-    var result = await MasterVehicle.find( {MODEL:req.body.MODEL},{ _id:0, _v:0, ROYAL_SUNDARAM_CODE:0, ROYAL_SUNDARAM_MODEL:0,ROYAL_MANU:0,BHARATHI_MANU:0,BARATHI_AXA_MODEL:0,BARATHI_AXA_VARIENT:0,BARATHI_EXSHOWROOMPRICE:0,MANUFACTURE:0,MODEL:0})
+    var result = await MasterVehicle.find( {MODEL:req.body.MODEL},{ VARIANT:true,_id:false})
            
    console.log(result)
             res.send(result);
@@ -62,7 +62,7 @@ router.post ('/mongovariant',async(req,res)=> {
   // =======================Fetching all values from mongodb===========================================================================//
   router.post ('/mongomastervalues',async(req,res)=> {
   
-    var result = await MasterVehicle.find( {MODEL:req.body.MODEL,MANUFACTURE:req.body.MANUFACTURE,CODE:req.body.CODE},{ _id:0, _v:0, CODE:0,MANUFACTURE:0,MODEL:0})
+    var result = await MasterVehicle.find( {MODEL:req.body.MODEL,MANUFACTURE:req.body.MANUFACTURE,CODE:req.body.CODE},{ _id:0, _v:0, VARIANT:0,MANUFACTURE:0,MODEL:0,isTopModel:false,Active:false})
            
    console.log(result)
             res.send(result);
